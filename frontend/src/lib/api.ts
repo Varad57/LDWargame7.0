@@ -109,7 +109,7 @@ export const session = {
 };
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
-  const apiBase = import.meta.env.VITE_API_URL || "http://localhost:8081";
+  const apiBase = import.meta.env.VITE_API_URL || "http://ld-wargame-backend-jbhargav.centralindia.cloudapp.azure.com";
   const res = await fetch(`${apiBase}${path}`, {
     ...init,
     headers: {
