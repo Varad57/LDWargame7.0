@@ -1,0 +1,29 @@
+# General / System
+.DS_Store
+*.log
+.env
+.env.local
+
+# Frontend (Vite / React)
+frontend/node_modules/
+frontend/dist/
+frontend/dist-ssr/
+frontend/.vite/
+frontend/.output/
+frontend/.eslintcache
+frontend/coverage/
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/.pm2/
+
+# Backend (Go)
+backend/bin/
+backend/tmp/
+backend/*.exe
+backend/wargame-backend
+backend/server
+# Ignore SQLite database files so they don't bloat the repo
+backend/wargame.db
+backend/wargame.db-shm
+backend/wargame.db-wal
