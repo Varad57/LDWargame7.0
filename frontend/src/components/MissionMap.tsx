@@ -1,5 +1,6 @@
 import { Lock } from "lucide-react";
 import { Link } from "@tanstack/react-router";
+import { useRef, useEffect } from "react";
 import { type Challenge } from "@/lib/api";
 
 type MissionMapProps = {
@@ -9,16 +10,17 @@ type MissionMapProps = {
 const ROCKET_IMG = "https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Rocket/3D/rocket_3d.png";
 
 const PLANET_IMAGES = [
-  "https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Ringed%20planet/3D/ringed_planet_3d.png",
-  "https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Full%20moon/3D/full_moon_3d.png",
-  "https://img.icons8.com/color/144/earth-planet.png", // sector 3 - highly colorful earth
-  "https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Sun/3D/sun_3d.png",
-  "https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/First%20quarter%20moon/3D/first_quarter_moon_3d.png",
-  "https://img.icons8.com/color/144/jupiter-planet.png", // sector 6 - colorful gas giant
-  "https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Comet/3D/comet_3d.png",
-  "https://img.icons8.com/color/144/mars-planet.png", // sector 8 - red planet
-  "https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/New%20moon/3D/new_moon_3d.png",
-  "https://img.icons8.com/color/144/saturn-planet.png", // sector 10 - colorful ringed planet
+  "/fonts/astro-space/planets/planet1.png",
+  "/fonts/astro-space/planets/planet2.png",
+  "/fonts/astro-space/planets/planet3.png",
+  "/fonts/astro-space/planets/planet4.png",
+  "/fonts/astro-space/planets/planet5.png",
+  "/fonts/astro-space/planets/planet6.png",
+  "/fonts/astro-space/planets/planet7.png",
+  "/fonts/astro-space/planets/planet8.png",
+  "/fonts/astro-space/planets/planet9.png",
+  "/fonts/astro-space/planets/planet10.png",
+  "/fonts/astro-space/planets/planet11.png",
 ];
 
 export function MissionMap({ challenges }: MissionMapProps) {
@@ -31,6 +33,14 @@ export function MissionMap({ challenges }: MissionMapProps) {
   const firstUnlockedIndex = challenges.findIndex((c) => !c.locked && !c.solved);
   const activeFocusId =
     firstUnlockedIndex !== -1 ? challenges[firstUnlockedIndex]?.id ?? null : null;
+
+  // Ref to scroll the active node into view on mount
+  const activeNodeRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (activeNodeRef.current) {
+      activeNodeRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }, [activeFocusId]);
 
   // Calculate coordinates for each challenge
   const nodes = challenges.map((c, i) => {
@@ -93,6 +103,7 @@ export function MissionMap({ challenges }: MissionMapProps) {
           return (
             <div
               key={node.id}
+              ref={isFocus ? activeNodeRef : undefined}
               className="absolute -translate-x-1/2 -translate-y-1/2 z-10"
               style={{ left: `${node.x}%`, top: `${node.y}px` }}
             >
@@ -116,7 +127,7 @@ export function MissionMap({ challenges }: MissionMapProps) {
                     }`}>
                     <span className="planet-float-wrapper">
                       <img
-                        src={isFocus ? ROCKET_IMG : PLANET_IMAGES[node.index % PLANET_IMAGES.length]}
+                        src={PLANET_IMAGES[node.index % PLANET_IMAGES.length]}
                         alt="Planet"
                         className="w-12 h-12 sm:w-16 sm:h-16 drop-shadow-lg transition-transform duration-300 group-hover:scale-125 object-contain"
                       />

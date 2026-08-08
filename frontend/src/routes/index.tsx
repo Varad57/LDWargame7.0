@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { getProgress, session } from "@/lib/api";
 import { MissionMap } from "@/components/MissionMap";
 
@@ -33,16 +33,6 @@ function Dashboard() {
 
   const challenges = data?.challenges ?? [];
 
-  useEffect(() => {
-    if (!isLoading && challenges.length > 0) {
-      if (!sessionStorage.getItem("missionMapScrolled")) {
-        sessionStorage.setItem("missionMapScrolled", "true");
-        setTimeout(() => {
-          window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
-        }, 50);
-      }
-    }
-  }, [isLoading, challenges.length]);
 
   return (
     <div className="w-full relative min-h-screen overflow-hidden">

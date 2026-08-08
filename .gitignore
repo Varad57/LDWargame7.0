@@ -27,3 +27,6 @@ backend/server
 backend/wargame.db
 backend/wargame.db-shm
 backend/wargame.db-wal
+
+# Dependencies
+deps/go/
