@@ -149,6 +149,9 @@ function MissionPage() {
 
       <div className="min-h-[80vh] flex flex-col justify-center items-center px-4">
         <div className="w-full max-w-md">
+          <h2 className="text-center font-display text-2xl font-bold uppercase tracking-wider text-cyan-400 mb-6 drop-shadow-[0_0_10px_rgba(6,182,212,0.3)] animate-rise">
+            Level {levelIndex}
+          </h2>
           <div className="glass-panel p-6 rounded-xl sm:p-8">
             {challenge.locked ? (
               <p className="flex items-center gap-2.5 text-base text-rose-400/90 font-mono bg-rose-500/5 border border-rose-500/20 p-4 rounded-lg">
