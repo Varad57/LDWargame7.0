@@ -4,7 +4,7 @@ import "os"
 
 var (
 	JWTSecret  = []byte(getEnvOrDefault("JWT_SECRET", "wargame-ctf-secret-change-me-in-prod"))
-	ListenAddr = getEnvOrDefault("LISTEN_ADDR", ":8081")
+	ListenAddr = getEnvOrDefault("LISTEN_ADDR", ":80")
 	DBPath     = getEnvOrDefault("DB_PATH", "./wargame.db")
 )
 
