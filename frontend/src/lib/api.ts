@@ -109,7 +109,7 @@ export const session = {
 };
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
-  const apiBase = (import.meta.env['VITE_API_URL'] || "https://ld-wargame-backend-jbhargav.centralindia.cloudapp.azure.com").replace(/\/+$/, "");
+  const apiBase = (import.meta.env['VITE_API_URL'] || "").replace(/\/+$/, "");
   const res = await fetch(`${apiBase}${path}`, {
     ...init,
     headers: {
