@@ -32,11 +32,10 @@ function LeaderboardPage() {
   const me = typeof window !== "undefined" ? session.username : null;
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-10 sm:py-14 relative">
-      <div className="mb-6">
-        <BackLink />
-      </div>
-      <header className="animate-rise text-center">
+    <>
+      <BackLink />
+      <div className="mx-auto max-w-5xl px-4 py-10 sm:py-14 relative">
+        <header className="animate-rise text-center">
         <h1 className="text-4xl font-bold text-foreground sm:text-6xl">
           Leaderboard
         </h1>
@@ -114,7 +113,8 @@ function LeaderboardPage() {
           })
         )}
       </div>
-    </div>
+      </div>
+    </>
   );
 }
 
@@ -122,9 +122,9 @@ function BackLink() {
   return (
     <Link
       to="/"
-      className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-primary sm:text-base"
+      className="fixed top-24 left-6 z-50 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground transition-all hover:text-primary bg-black/50 backdrop-blur-md border border-slate-800 rounded-full px-4 py-2 hover:border-primary/40 hover:shadow-[0_0_12px_rgba(6,182,212,0.2)]"
     >
-      <ArrowLeft className="size-5" /> Mission grid
+      <ArrowLeft className="size-3.5" /> Back
     </Link>
   );
 }
