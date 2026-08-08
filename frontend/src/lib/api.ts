@@ -109,8 +109,7 @@ export const session = {
 };
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
-  const apiBase = (import.meta.env['VITE_API_URL'] || "").replace(/\/+$/, "");
-  const res = await fetch(`${apiBase}${path}`, {
+  const res = await fetch(path, {
     ...init,
     headers: {
       "Content-Type": "application/json",
