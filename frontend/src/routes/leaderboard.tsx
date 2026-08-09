@@ -57,8 +57,14 @@ function LeaderboardPage() {
             <div key={i} className="h-16 animate-pulse border-b border-border/40 opacity-40" />
           ))
         ) : !data || data.length === 0 ? (
-          <div className="p-12 text-center font-mono text-base text-muted-foreground">
-            NO ACTIVE PILOTS RECORDED YET. LOG IN AND CAPTURE A FLAG TO TAKE RANK #1!
+          <div className="flex flex-col items-center gap-4 p-14 text-center">
+            <span className="text-5xl">🔒</span>
+            <p className="font-display text-xl font-bold uppercase tracking-widest text-foreground sm:text-2xl">
+              Leaderboard is Frozen
+            </p>
+            <p className="max-w-sm font-mono text-sm text-muted-foreground">
+              Final leaderboard will be displayed soon.
+            </p>
           </div>
         ) : (
           data.map((entry, i) => {
